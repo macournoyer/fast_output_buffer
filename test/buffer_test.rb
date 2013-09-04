@@ -8,6 +8,10 @@ class BufferTest < Test::Unit::TestCase
   def test_initialize
     buffer = FastSafeBuffer.new("hi")
     assert_equal "hi", buffer.to_str
+    
+    @buffer << "muffin"
+    buffer = FastSafeBuffer.new(@buffer)
+    assert_equal @buffer.to_str, buffer.to_str
   end
 
   def test_size

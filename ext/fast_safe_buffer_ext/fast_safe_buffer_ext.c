@@ -22,7 +22,8 @@ void BufferWrapper_free(void *data) {
   }
 }
 
-inline const char *getstring(VALUE obj, size_t *len) {
+// Try to get pointer and length to string in most efficient way possible.
+static inline const char *getstring(VALUE obj, size_t *len) {
   int type = TYPE(obj);
 
   if (type == T_STRING) {
@@ -55,13 +56,16 @@ VALUE FastSafeBuffer_concat(VALUE self, VALUE str) {
   DATA_GET(self, BufferWrapper, wrapper);
   // TODO ensure str is a String
 
+  size_t len = 0;
+  const char *ptr = getstring(str, &len);
+
   if (!wrapper->html_safe || RTEST(rb_funcall(str, Iis_html_safe, 0))) {  
     // We don't care about escaping
-    gh_buf_put(&wrapper->buf, RSTRING_PTR(str), RSTRING_LEN(str));
+    gh_buf_put(&wrapper->buf, ptr, len);
   } else {
-    int escaped = houdini_escape_html(&wrapper->buf, (uint8_t *)RSTRING_PTR(str), RSTRING_LEN(str));
+    int escaped = houdini_escape_html(&wrapper->buf, (uint8_t *)ptr, len);
     // If not escaped Houdini does not concat.
-    if (!escaped) gh_buf_put(&wrapper->buf, RSTRING_PTR(str), RSTRING_LEN(str));
+    if (!escaped) gh_buf_put(&wrapper->buf, ptr, len);
   }
 
   return self;
