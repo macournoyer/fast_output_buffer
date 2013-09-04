@@ -16,12 +16,12 @@ class FastSafeBuffer
 
   # Aliases used in ERB
   alias :append= :<<
-  alias :safe_append= :safe_concat
 
   def safe_concat(value)
     raise SafeConcatError unless html_safe?
     unsafe_concat(value)
   end
+  alias :safe_append= :safe_concat
 
   def to_s
     to_str

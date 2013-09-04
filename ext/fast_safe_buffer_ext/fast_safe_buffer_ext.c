@@ -54,7 +54,6 @@ VALUE FastSafeBuffer_alloc(VALUE klass) {
 VALUE FastSafeBuffer_concat(VALUE self, VALUE str) {
   BufferWrapper *wrapper = NULL;
   DATA_GET(self, BufferWrapper, wrapper);
-  // TODO ensure str is a String
 
   size_t len = 0;
   const char *ptr = getstring(str, &len);
