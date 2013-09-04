@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = FastSafeBuffer::VERSION
   spec.authors       = ["macournoyer"]
   spec.email         = ["macournoyer@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = 
+  spec.summary       = "Make ActiveSupport::SafeBuffer fast as hell, twice."
   spec.homepage      = ""
   spec.license       = "MIT"
 
