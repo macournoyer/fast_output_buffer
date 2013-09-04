@@ -14,6 +14,10 @@ class FastSafeBuffer
     concat buffer if buffer
   end
 
+  # Aliases used in ERB
+  alias :append= :<<
+  alias :safe_append= :safe_concat
+
   def safe_concat(value)
     raise SafeConcatError unless html_safe?
     unsafe_concat(value)
@@ -43,5 +47,10 @@ class FastSafeBuffer
 
   def encoding
     Encoding::UTF_8
+  end
+
+  def encode!
+    # noop
+    self
   end
 end
