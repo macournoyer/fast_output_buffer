@@ -22,7 +22,7 @@ class BufferTest < Test::Unit::TestCase
     assert_equal "me&amp;you".size, @buffer.length
   end
   
-  def test_size
+  def test_empty
     assert @buffer.empty?
     @buffer.concat "yo"
     assert ! @buffer.empty?
