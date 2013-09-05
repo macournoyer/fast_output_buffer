@@ -4,7 +4,7 @@ A faster output buffer for ActionView.
 
 Rendering, rendering, rendering. That's all we're doing in our Rails apps! So why not make it as fast as possible?
 
-The first time you render a view (template) in Rails, it will be compiled to a method. This is what a compiled view look like.
+The first time you render a view (template) in Rails, it will be compiled to a method. This is what a compiled view consisting of `<p><%= @title %></p>` look like.
 
     def _app_views_sites_index_html_erb___2525557208255998641_70225959709280(local_assigns, output_buffer)
       # ...
@@ -12,10 +12,10 @@ The first time you render a view (template) in Rails, it will be compiled to a m
       @output_buffer.safe_append='<p>'
       @output_buffer.append=( @title )
       @output_buffer.safe_append='</p>'
-      # more calls on @output_buffer
+      # ...
     end
 
-You see, all parts of your view are sent to a method of `ActionView::OutputBuffer`. `safe_append=` for chunks we know are sagfe and `append=` for stuff that is not and needs to be escaped. The more `<% ... %>` you have in your view, the more of those you'll have and the slower it will be.
+You see, all parts of your view are sent to a method of `ActionView::OutputBuffer`. `safe_append=` for chunks we know are safe and `append=` for stuff that is not and needs to be escaped. The more `<% ... %>` you have in your view, the more of those you'll have and the slower it will be.
 
 If you have large views in your app, chances are most of the request time is spent rendering.
 
