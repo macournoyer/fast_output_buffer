@@ -2,6 +2,8 @@
 #include "buffer.h"
 #include "houdini.h"
 
+#define INITIAL_BUFFER_SIZE 102400
+
 #define RAISE_NOT_NULL(T) if(T == NULL) rb_raise(rb_eArgError, "NULL found for " # T " when shouldn't be.");
 #define DATA_GET(from,type,name) Data_Get_Struct(from,type,name); RAISE_NOT_NULL(name);
 
@@ -46,7 +48,7 @@ static inline const char *getstring(VALUE obj, size_t *len) {
 
 VALUE FastSafeBuffer_alloc(VALUE klass) {
   BufferWrapper *wrapper = ALLOC_N(BufferWrapper, 1);
-  gh_buf_init(&wrapper->buf, 102400);
+  gh_buf_init(&wrapper->buf, INITIAL_BUFFER_SIZE);
   wrapper->html_safe = 1;
 
   return Data_Wrap_Struct(klass, NULL, BufferWrapper_free, wrapper);
