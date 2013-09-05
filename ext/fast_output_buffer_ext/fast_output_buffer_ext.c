@@ -76,11 +76,13 @@ VALUE FastSafeBuffer_concat(VALUE self, VALUE str) {
 VALUE FastSafeBuffer_safe_concat(VALUE self, VALUE str) {
   BufferWrapper *wrapper = NULL;
   DATA_GET(self, BufferWrapper, wrapper);
-  // TODO ensure str is a String
-
+  
   if (!wrapper->html_safe) rb_raise(cSafeConcatError, NULL);
 
-  gh_buf_put(&wrapper->buf, RSTRING_PTR(str), RSTRING_LEN(str));
+  size_t len = 0;
+  const char *ptr = getstring(str, &len);
+
+  gh_buf_put(&wrapper->buf, ptr, len);
 
   return self;
 }
