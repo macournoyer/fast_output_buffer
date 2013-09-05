@@ -28,7 +28,7 @@ class RenderContext
   end
 end
 
-REPS = 10        # Number of times to call render
+REPS = 20        # Number of times to call render
 TAGS = 300       # Number of ERB tags in template
 TAG_SIZE = 3000  # Size of string inside ERB tags.
 
