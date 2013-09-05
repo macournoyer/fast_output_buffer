@@ -6,10 +6,10 @@ require 'fast_output_buffer/version'
 Gem::Specification.new do |spec|
   spec.name          = "fast_output_buffer"
   spec.version       = FastSafeBuffer::VERSION
-  spec.authors       = ["macournoyer"]
-  spec.email         = ["macournoyer@gmail.com"]
+  spec.authors       = ["Marc-Andre Cournoyer"]
+  spec.email         = ["marc@codedinc.com"]
   spec.description   = 
-  spec.summary       = "Make ActiveSupport::SafeBuffer fast as hell, twice."
+  spec.summary       = "Makes Rails view rendering fast as hell, twice."
   spec.homepage      = ""
   spec.license       = "MIT"
 

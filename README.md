@@ -15,9 +15,9 @@ The first time you render a view (template) in Rails, it will be compiled to a m
       # more calls on @output_buffer
     end
 
-You see, all parts of your view are sent to a method of ActionView::OutputBuffer. `safe_append=` for chunks we know are sage and `append=` for stuff is not and needs to be escaped. The more `<% ... %>` you have in your view, the more of those you'll have.
+You see, all parts of your view are sent to a method of `ActionView::OutputBuffer`. `safe_append=` for chunks we know are sagfe and `append=` for stuff that is not and needs to be escaped. The more `<% ... %>` you have in your view, the more of those you'll have and the slower it will be.
 
-If you have large views in your app, changes are most of the request time is spent rendering.
+If you have large views in your app, chances are most of the request time is spent rendering.
 
 Don't worry, `FastOutputBuffer` is here to save your day!
 
@@ -77,7 +77,4 @@ Early artificial benchmarks indicate 20-30% increase in performance and several 
 
 ## Thanks
 
-https://github.com/vmg/houdini
-https://github.com/brianmario/escape_utils
-
-<3
+Based on https://github.com/vmg/houdini <3
