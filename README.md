@@ -1,12 +1,14 @@
-# FastOutputBuffer
-
 ---
 ## DO NOT USE
 
-After some more experimenting. This cause some critical issues with the capture helper and the like. Fixing this would revert most of the performance improvments.
+After some more experimenting. This lib caused some critical issues with the capture helper and the like. Fixing this would revert most of the performance improvements.
 
-That was a fun little experiment. But all is not lost. Check out https://github.com/brianmario/escape_utils to improve rendering perf like crazy in your apps :)
+That was a fun little experiment... But all is not lost. Check out https://github.com/brianmario/escape_utils to improve rendering perf like crazy in your apps :)
+
 ---
+
+
+# FastOutputBuffer
 
 A faster output buffer for ActionView.
 
