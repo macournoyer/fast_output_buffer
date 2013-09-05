@@ -1,4 +1,4 @@
-# FastSafeBuffer
+# FastOutputBuffer
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'fast_safe_buffer'
+    gem 'fast_output_buffer'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install fast_safe_buffer
+    $ gem install fast_output_buffer
 
 ## Usage
 

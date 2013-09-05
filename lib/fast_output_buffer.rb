@@ -1,4 +1,4 @@
-require "fast_safe_buffer/version"
+require "fast_output_buffer/version"
 
 class FastSafeBuffer
   class SafeConcatError < StandardError
@@ -43,5 +43,5 @@ class FastSafeBuffer
   end
 end
 
-require "fast_safe_buffer_ext"
-require "fast_safe_buffer/railtie"
+require "fast_output_buffer_ext"
+require "fast_output_buffer/railtie"

@@ -1,5 +1,5 @@
 require 'test_helper'
-require "fast_safe_buffer/action_view"
+require "fast_output_buffer/action_view"
 
 class ActionViewTest < Test::Unit::TestCase
   include ActionView::Context

@@ -1,5 +1,5 @@
 require 'benchmark'
-require 'fast_safe_buffer'
+require 'fast_output_buffer'
 require 'action_view'
 require 'action_view/buffers'
 

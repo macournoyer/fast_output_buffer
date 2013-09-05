@@ -126,7 +126,7 @@ VALUE FastSafeBuffer_initialize_copy(VALUE self, VALUE other) {
 
 ////////// Ruby Init //////////
 
-void Init_fast_safe_buffer_ext() {
+void Init_fast_output_buffer_ext() {
   cFastSafeBuffer = rb_define_class("FastSafeBuffer", rb_cObject);
   cSafeConcatError = rb_define_class_under(cFastSafeBuffer, "FastSafeBuffer", rb_cObject);
 
