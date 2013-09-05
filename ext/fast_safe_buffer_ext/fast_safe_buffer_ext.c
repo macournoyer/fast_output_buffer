@@ -11,6 +11,7 @@ typedef struct {
 } BufferWrapper;
 
 static VALUE cFastSafeBuffer;
+static VALUE cSafeConcatError;
 static VALUE Iis_html_safe;
 static VALUE Ito_s;
 
@@ -70,10 +71,12 @@ VALUE FastSafeBuffer_concat(VALUE self, VALUE str) {
   return self;
 }
 
-VALUE FastSafeBuffer_unsafe_concat(VALUE self, VALUE str) {
+VALUE FastSafeBuffer_safe_concat(VALUE self, VALUE str) {
   BufferWrapper *wrapper = NULL;
   DATA_GET(self, BufferWrapper, wrapper);
   // TODO ensure str is a String
+
+  if (!wrapper->html_safe) rb_raise(cSafeConcatError, NULL);
 
   gh_buf_put(&wrapper->buf, RSTRING_PTR(str), RSTRING_LEN(str));
 
@@ -125,6 +128,7 @@ VALUE FastSafeBuffer_initialize_copy(VALUE self, VALUE other) {
 
 void Init_fast_safe_buffer_ext() {
   cFastSafeBuffer = rb_define_class("FastSafeBuffer", rb_cObject);
+  cSafeConcatError = rb_define_class_under(cFastSafeBuffer, "FastSafeBuffer", rb_cObject);
 
   Iis_html_safe = rb_intern("html_safe?");
   Ito_s = rb_intern("to_s");
@@ -133,7 +137,10 @@ void Init_fast_safe_buffer_ext() {
 
   rb_define_method(cFastSafeBuffer, "concat", FastSafeBuffer_concat, 1);
   rb_define_method(cFastSafeBuffer, "<<", FastSafeBuffer_concat, 1);
-  rb_define_method(cFastSafeBuffer, "unsafe_concat", FastSafeBuffer_unsafe_concat, 1);
+  rb_define_method(cFastSafeBuffer, "append=", FastSafeBuffer_concat, 1);
+  
+  rb_define_method(cFastSafeBuffer, "safe_concat", FastSafeBuffer_safe_concat, 1);
+  rb_define_method(cFastSafeBuffer, "safe_append=", FastSafeBuffer_safe_concat, 1);
 
   rb_define_method(cFastSafeBuffer, "to_str", FastSafeBuffer_to_str, 0);
   rb_define_method(cFastSafeBuffer, "size", FastSafeBuffer_size, 0);

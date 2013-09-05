@@ -1,5 +1,4 @@
 require "fast_safe_buffer/version"
-require "fast_safe_buffer_ext"
 
 class FastSafeBuffer
   class SafeConcatError < StandardError
@@ -11,15 +10,6 @@ class FastSafeBuffer
   def initialize(buffer=nil)
     concat buffer if buffer
   end
-
-  # Aliases used in ERB
-  alias :append= :<<
-
-  def safe_concat(value)
-    raise SafeConcatError unless html_safe?
-    unsafe_concat(value)
-  end
-  alias :safe_append= :safe_concat
 
   def to_s
     to_str
@@ -53,4 +43,5 @@ class FastSafeBuffer
   end
 end
 
+require "fast_safe_buffer_ext"
 require "fast_safe_buffer/railtie"
